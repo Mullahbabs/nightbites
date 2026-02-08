@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calabar Night Bites | Late Night Food Delivery</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <style>
+      @import url("css/style.css");
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <i class="fas fa-utensils"></i>
+          <span>Calabar Night Bites</span>
+        </div>
+        <div class="nav-controls">
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="cart-btn" id="cartBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              class="slide-image"
+              alt="Night Food"
+            />
+            <div class="slide-overlay">
+              <h1>Night Bites, Day Delights</h1>
+              <p>
+                Order from the best restaurants in Calabar, open late into the
+                night. Delivered hot and fresh to your doorstep.
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span id="currentTime">Loading...</span> •
+                <span id="serviceStatus" style="color: var(--accent)"
+                  >Service: Active</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              class="slide-image"
+              alt="Grill"
+            />
+            <div class="slide-overlay">
+              <h1>Midnight Grills</h1>
+              <p>
+                Sizzling hot grills delivered to you 24/7. Best suya in town,
+                right at your doorstep.
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span id="currentTime2">Loading...</span> •
+                <span style="color: var(--accent)">Delivery: 30-45 mins</span>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              class="slide-image"
+              alt="Local Food"
+            />
+            <div class="slide-overlay">
+              <h1>Local Delicacies</h1>
+              <p>
+                Authentic Calabar cuisine made with love. Edikaikong, Afang, and
+                more!
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span id="currentTime3">Loading...</span> •
+                <span style="color: var(--accent)"
+                  >Traditional Taste Guaranteed</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="search-container">
+      <div class="search-box">
+        <input
+          type="text"
+          class="search-input"
+          id="searchInput"
+          placeholder="Search restaurants or menu items..."
+        />
+        <button class="filter-btn active" onclick="filterRestaurants('all')">
+          All
+        </button>
+        <button class="filter-btn" onclick="filterRestaurants('open')">
+          Open Now
+        </button>
+      </div>
+      <div class="filter-container">
+        <button class="filter-btn" onclick="filterByCategory('all')">
+          All Cuisines
+        </button>
+        <button class="filter-btn" onclick="filterByCategory('local')">
+          Local
+        </button>
+        <button class="filter-btn" onclick="filterByCategory('continental')">
+          Continental
+        </button>
+        <button class="filter-btn" onclick="filterByCategory('grill')">
+          Grill
+        </button>
+        <button class="filter-btn" onclick="filterByCategory('fast-food')">
+          Fast Food
+        </button>
+      </div>
+    </section>
+
+    <!-- Restaurant of the Week -->
+    <section class="restaurant-week">
+      <h2 class="section-title">Restaurant of the <span>Week</span></h2>
+      <div class="week-card">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          class="week-image"
+          alt="Restaurant of the Week"
+        />
+        <div class="week-info">
+          <span class="week-badge">🏆 RESTAURANT OF THE WEEK</span>
+          <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
+            Continental Delight
+          </h3>
+          <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9">
+            Voted best continental restaurant in Calabar for 3 consecutive
+            months. Specializing in gourmet dishes with local twists.
+          </p>
+          <div style="display: flex; gap: 2rem; margin-bottom: 2rem">
+            <div>
+              <div style="font-size: 2rem; font-weight: 800">4.8</div>
+              <div style="opacity: 0.8">Rating</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 800">35-50</div>
+              <div style="opacity: 0.8">Min Delivery</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 800">1:00</div>
+              <div style="opacity: 0.8">AM Close</div>
+            </div>
+          </div>
+          <button
+            class="menu-btn"
+            onclick="openMenu(4)"
+            style="background: white; color: #764ba2"
+          >
+            Order Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Most Popular Dish -->
+    <section class="popular-dish">
+      <h2 class="section-title">Most <span>Popular</span> Dish</h2>
+      <div class="popular-card">
+        <div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <span
+              style="
+                background: white;
+                color: var(--primary);
+                padding: 0.5rem 1.5rem;
+                border-radius: 50px;
+                font-weight: 600;
+              "
+              >🔥 HOT ITEM</span
+            >
+            <span style="opacity: 0.9">From: Night Grill Express</span>
+          </div>
+          <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
+            Spicy Suya Platter
+          </h3>
+          <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9">
+            Our signature spicy beef suya with secret spices, served with
+            onions, tomatoes, and spicy pepper sauce.
+          </p>
+          <div class="popular-stats">
+            <div class="stat">
+              <div class="stat-value">850+</div>
+              <div>Orders This Week</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4.9</div>
+              <div>Average Rating</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">₦2,500</div>
+              <div>Starting Price</div>
+            </div>
+          </div>
+          <button
+            class="menu-btn"
+            onclick="addFeaturedToCart(101, 1)"
+            style="background: white; color: var(--primary); margin-top: 1rem"
+          >
+            <i class="fas fa-cart-plus"></i> Add to Cart - ₦2,500
+          </button>
+        </div>
+        <div style="text-align: center">
+          <img
+            src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            style="
+              width: 100%;
+              border-radius: 20px;
+              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            "
+            alt="Suya"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Items -->
+    <section class="featured-items">
+      <h2 class="section-title">Featured <span>Items</span></h2>
+      <div class="featured-grid" id="featuredGrid">
+        <!-- Populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Restaurant Grid -->
+    <section class="restaurant-grid" id="restaurantGrid">
+      <!-- Populated by JavaScript -->
+    </section>
+
+    <!-- Ads Section -->
+    <section class="ads-container">
+      <h2 class="section-title">Special <span>Offers</span></h2>
+      <div class="ads-grid">
+        <div
+          class="ad-card ad-1"
+          onclick="showNotification('Use code NIGHT20 for 20% off!', 'success')"
+        >
+          <div class="ad-content">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
+              Midnight Special 🎉
+            </h3>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem">
+              20% OFF all orders between 12am - 4am
+            </p>
+            <p style="font-size: 1rem; opacity: 0.9">Use code: NIGHT20</p>
+          </div>
+        </div>
+        <div
+          class="ad-card ad-2"
+          onclick="
+            showNotification(
+              'Free delivery on orders above ₦10,000!',
+              'success',
+            )
+          "
+        >
+          <div class="ad-content">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
+              Free Delivery! 🚚
+            </h3>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem">
+              On all orders above ₦10,000
+            </p>
+            <p style="font-size: 1rem; opacity: 0.9">Valid until month end</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Menu Modal -->
+    <div class="modal" id="menuModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalRestaurantName"></h2>
+          <button class="close-modal" onclick="closeModal('menuModal')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="menu-grid" id="menuGrid">
+            <!-- Menu items populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Your Order</h2>
+          <button class="close-modal" onclick="closeModal('cartModal')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="cartItems">
+            <!-- Cart items populated by JavaScript -->
+          </div>
+          <div id="cartEmpty" style="text-align: center; padding: 2rem">
+            <i
+              class="fas fa-shopping-cart"
+              style="font-size: 3rem; color: #ccc; margin-bottom: 1rem"
+            ></i>
+            <p>Your cart is empty</p>
+          </div>
+          <div id="cartCheckout" style="display: none">
+            <div class="checkout-form">
+              <div class="form-group">
+                <label for="customerName">Full Name *</label>
+                <input
+                  type="text"
+                  id="customerName"
+                  class="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="customerPhone">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  class="form-input"
+                  placeholder="0800 000 0000"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="deliveryAddress">Delivery Address *</label>
+                <input
+                  type="text"
+                  id="deliveryAddress"
+                  class="form-input"
+                  placeholder="House number, street, area"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="specialInstructions">Special Instructions</label>
+                <textarea
+                  id="specialInstructions"
+                  class="form-input"
+                  placeholder="Any special requests, allergies, or delivery notes..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Delivery Area *</label>
+                <div class="location-options">
+                  <div
+                    class="location-option"
+                    data-location="urban"
+                    onclick="selectLocation('urban')"
+                  >
+                    <h4>Urban Area</h4>
+                    <p>₦500 delivery fee</p>
+                    <p>Delivery time: 30-45 mins</p>
+                  </div>
+                  <div
+                    class="location-option"
+                    data-location="suburban"
+                    onclick="selectLocation('suburban')"
+                  >
+                    <h4>Sub-Urban Area</h4>
+                    <p>₦800 delivery fee</p>
+                    <p>Delivery time: 45-60 mins</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="payment-info">
+                <h3>Total to Pay</h3>
+                <p
+                  style="
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: var(--primary);
+                  "
+                  id="totalAmount"
+                >
+                  ₦0
+                </p>
+                <p>Payment via Bank Transfer</p>
+                <div
+                  style="
+                    margin: 1rem 0;
+                    padding: 1rem;
+                    background: white;
+                    border-radius: 5px;
+                  "
+                >
+                  <p style="font-family: monospace; font-size: 1.2rem">
+                    0123456789 • Calabar Night Bites Ltd.
+                  </p>
+                  <button class="copy-btn" onclick="copyAccount()">
+                    <i class="fas fa-copy"></i> Copy Account
+                  </button>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8">
+                  <i class="fas fa-info-circle"></i> Please transfer the exact
+                  amount and use your name as reference
+                </p>
+                <button
+                  class="menu-btn"
+                  onclick="submitOrder()"
+                  style="margin-top: 1rem"
+                >
+                  <i class="fas fa-paper-plane"></i> Submit Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal success-modal" id="successModal">
+      <div class="modal-content">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Order Submitted Successfully!</h2>
+        <p>Your order has been received and is being processed.</p>
+        <p>You will receive a confirmation SMS shortly.</p>
+        <p
+          style="
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 184, 148, 0.1);
+            border-radius: 10px;
+          "
+        >
+          <strong>Order ID:</strong> <span id="orderId">NB123456</span>
+        </p>
+        <button
+          class="menu-btn"
+          onclick="closeModal('successModal')"
+          style="margin-top: 2rem"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="openModal('cartModal')">
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Calabar Night Bites. All rights reserved.</p>
+      <p style="margin-top: 1rem; opacity: 0.8">
+        <i class="fas fa-clock"></i> Service Hours: 6:00 PM - 4:30 AM Daily |
+        <i class="fas fa-phone"></i> Support: 0800-CALABAR |
+        <i class="fas fa-map-marker-alt"></i> Calabar, Nigeria
+      </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
