@@ -1,0 +1,283 @@
+[
+  {
+    "id": 1,
+    "name": "Night Grill Express",
+    "category": "grill",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.7,
+    "deliveryTime": "25-40 min",
+    "closingTime": "04:00",
+    "status": "open",
+    "featured": true,
+    "description": "Best grilled meats in Calabar, open till 4am",
+    "menu": [
+      {
+        "id": 101,
+        "name": "Suya Platter",
+        "description": "Spicy grilled beef skewers",
+        "basePrice": 2500,
+        "minPrice": 2500,
+        "popular": true
+      },
+      {
+        "id": 102,
+        "name": "Chicken Wings",
+        "description": "Crispy fried chicken wings",
+        "basePrice": 1800,
+        "minPrice": 1800
+      },
+      {
+        "id": 103,
+        "name": "Grilled Fish",
+        "description": "Fresh tilapia with spices",
+        "basePrice": 3500,
+        "minPrice": 3500
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Mama Eka's Kitchen",
+    "category": "local",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.9,
+    "deliveryTime": "30-45 min",
+    "closingTime": "02:00",
+    "status": "open",
+    "featured": true,
+    "description": "Authentic Calabar cuisine made with love",
+    "menu": [
+      {
+        "id": 201,
+        "name": "Edikaikong Soup",
+        "description": "Vegetable soup with assorted meat",
+        "basePrice": 3000,
+        "minPrice": 3000
+      },
+      {
+        "id": 202,
+        "name": "Afang Soup",
+        "description": "Traditional Calabar soup",
+        "basePrice": 2800,
+        "minPrice": 2800
+      },
+      {
+        "id": 203,
+        "name": "Fisherman Soup",
+        "description": "Spicy seafood delight",
+        "basePrice": 4000,
+        "minPrice": 4000
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Pizza Palace",
+    "category": "fast-food",
+    "image": "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.5,
+    "deliveryTime": "35-50 min",
+    "closingTime": "03:30",
+    "status": "open",
+    "featured": false,
+    "description": "Freshly baked pizzas delivered hot",
+    "menu": [
+      {
+        "id": 301,
+        "name": "Pepperoni Pizza",
+        "description": "Large 14-inch pizza",
+        "basePrice": 4500,
+        "minPrice": 4500
+      },
+      {
+        "id": 302,
+        "name": "BBQ Chicken Pizza",
+        "description": "Smoky chicken delight",
+        "basePrice": 5000,
+        "minPrice": 5000
+      },
+      {
+        "id": 303,
+        "name": "Vegetarian Pizza",
+        "description": "Fresh vegetable mix",
+        "basePrice": 4000,
+        "minPrice": 4000
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Continental Delight",
+    "category": "continental",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.8,
+    "deliveryTime": "40-55 min",
+    "closingTime": "01:00",
+    "status": "open",
+    "featured": true,
+    "description": "Gourmet continental dishes with local twists",
+    "menu": [
+      {
+        "id": 401,
+        "name": "Beef Burger",
+        "description": "Juicy beef with cheese",
+        "basePrice": 2200,
+        "minPrice": 2200
+      },
+      {
+        "id": 402,
+        "name": "Spaghetti Bolognese",
+        "description": "Italian pasta special",
+        "basePrice": 2800,
+        "minPrice": 2800
+      },
+      {
+        "id": 403,
+        "name": "Grilled Chicken Salad",
+        "description": "Healthy fresh salad",
+        "basePrice": 3200,
+        "minPrice": 3200
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Seafood Harbor",
+    "category": "local",
+    "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.6,
+    "deliveryTime": "45-60 min",
+    "closingTime": "03:00",
+    "status": "open",
+    "featured": false,
+    "description": "Fresh seafood from Calabar waters",
+    "menu": [
+      {
+        "id": 501,
+        "name": "Prawn Delight",
+        "description": "Fresh prawns in pepper sauce",
+        "basePrice": 4200,
+        "minPrice": 4200
+      },
+      {
+        "id": 502,
+        "name": "Fish Pepper Soup",
+        "description": "Spicy fish soup",
+        "basePrice": 2800,
+        "minPrice": 2800
+      },
+      {
+        "id": 503,
+        "name": "Mixed Seafood Platter",
+        "description": "Assorted seafood",
+        "basePrice": 5500,
+        "minPrice": 5500
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Crispy Chicken Hub",
+    "category": "fast-food",
+    "image": "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.4,
+    "deliveryTime": "20-35 min",
+    "closingTime": "04:00",
+    "status": "open",
+    "featured": false,
+    "description": "Crispy fried chicken at its best",
+    "menu": [
+      {
+        "id": 601,
+        "name": "Crispy Chicken Bucket",
+        "description": "8 pieces of crispy chicken",
+        "basePrice": 3800,
+        "minPrice": 3800
+      },
+      {
+        "id": 602,
+        "name": "Chicken & Chips",
+        "description": "Fried chicken with fries",
+        "basePrice": 2500,
+        "minPrice": 2500
+      },
+      {
+        "id": 603,
+        "name": "Spicy Chicken Wings",
+        "description": "Hot and spicy wings",
+        "basePrice": 2200,
+        "minPrice": 2200
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Tasty Bites",
+    "category": "local",
+    "image": "https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.7,
+    "deliveryTime": "25-40 min",
+    "closingTime": "02:30",
+    "status": "open",
+    "featured": false,
+    "description": "Authentic local dishes for every taste",
+    "menu": [
+      {
+        "id": 701,
+        "name": "Jollof Rice Special",
+        "description": "Party jollof with chicken",
+        "basePrice": 2000,
+        "minPrice": 2000
+      },
+      {
+        "id": 702,
+        "name": "Fried Rice Combo",
+        "description": "Fried rice with assorted meat",
+        "basePrice": 2200,
+        "minPrice": 2200
+      },
+      {
+        "id": 703,
+        "name": "Pounded Yam Set",
+        "description": "Pounded yam with soup",
+        "basePrice": 2800,
+        "minPrice": 2800
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Sweet Treats Bakery",
+    "category": "continental",
+    "image": "https://images.unsplash.com/photo-1556909211-36987daf7bcc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.9,
+    "deliveryTime": "30-45 min",
+    "closingTime": "01:00",
+    "status": "open",
+    "featured": false,
+    "description": "Freshly baked pastries and desserts",
+    "menu": [
+      {
+        "id": 801,
+        "name": "Red Velvet Cake",
+        "description": "Slice of delicious cake",
+        "basePrice": 1500,
+        "minPrice": 1500
+      },
+      {
+        "id": 802,
+        "name": "Chocolate Brownies",
+        "description": "Freshly baked brownies",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 803,
+        "name": "Assorted Pastries",
+        "description": "Mix of 6 pastries",
+        "basePrice": 2500,
+        "minPrice": 2500
+      }
+    ]
+  }
+]

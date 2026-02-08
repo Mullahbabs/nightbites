@@ -1,330 +1,43 @@
-// Initialize EmailJS (Replace with your actual credentials)
-emailjs.init("YOUR_USER_ID");
+// Main application script
+document.addEventListener("DOMContentLoaded", async function () {
+  // Initialize components
+  await initApp();
+});
 
-// Enhanced Restaurant Data
-const restaurants = [
-  {
-    id: 1,
-    name: "Night Grill Express",
-    category: "grill",
-    image:
-      "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.7,
-    deliveryTime: "25-40 min",
-    closingTime: "04:00",
-    status: "open",
-    featured: true,
-    menu: [
-      {
-        id: 101,
-        name: "Suya Platter",
-        description: "Spicy grilled beef skewers",
-        basePrice: 2500,
-        minPrice: 2500,
-        popular: true,
-      },
-      {
-        id: 102,
-        name: "Chicken Wings",
-        description: "Crispy fried chicken wings",
-        basePrice: 1800,
-        minPrice: 1800,
-      },
-      {
-        id: 103,
-        name: "Grilled Fish",
-        description: "Fresh tilapia with spices",
-        basePrice: 3500,
-        minPrice: 3500,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Mama Eka's Kitchen",
-    category: "local",
-    image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.9,
-    deliveryTime: "30-45 min",
-    closingTime: "02:00",
-    status: "open",
-    featured: true,
-    menu: [
-      {
-        id: 201,
-        name: "Edikaikong Soup",
-        description: "Vegetable soup with assorted meat",
-        basePrice: 3000,
-        minPrice: 3000,
-      },
-      {
-        id: 202,
-        name: "Afang Soup",
-        description: "Traditional Calabar soup",
-        basePrice: 2800,
-        minPrice: 2800,
-      },
-      {
-        id: 203,
-        name: "Fisherman Soup",
-        description: "Spicy seafood delight",
-        basePrice: 4000,
-        minPrice: 4000,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Pizza Palace",
-    category: "fast-food",
-    image:
-      "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.5,
-    deliveryTime: "35-50 min",
-    closingTime: "03:30",
-    status: "open",
-    featured: false,
-    menu: [
-      {
-        id: 301,
-        name: "Pepperoni Pizza",
-        description: "Large 14-inch pizza",
-        basePrice: 4500,
-        minPrice: 4500,
-      },
-      {
-        id: 302,
-        name: "BBQ Chicken Pizza",
-        description: "Smoky chicken delight",
-        basePrice: 5000,
-        minPrice: 5000,
-      },
-      {
-        id: 303,
-        name: "Vegetarian Pizza",
-        description: "Fresh vegetable mix",
-        basePrice: 4000,
-        minPrice: 4000,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Continental Delight",
-    category: "continental",
-    image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.8,
-    deliveryTime: "40-55 min",
-    closingTime: "01:00",
-    status: "open",
-    featured: true,
-    menu: [
-      {
-        id: 401,
-        name: "Beef Burger",
-        description: "Juicy beef with cheese",
-        basePrice: 2200,
-        minPrice: 2200,
-      },
-      {
-        id: 402,
-        name: "Spaghetti Bolognese",
-        description: "Italian pasta special",
-        basePrice: 2800,
-        minPrice: 2800,
-      },
-      {
-        id: 403,
-        name: "Grilled Chicken Salad",
-        description: "Healthy fresh salad",
-        basePrice: 3200,
-        minPrice: 3200,
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: "Seafood Harbor",
-    category: "local",
-    image:
-      "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.6,
-    deliveryTime: "45-60 min",
-    closingTime: "03:00",
-    status: "open",
-    featured: false,
-    menu: [
-      {
-        id: 501,
-        name: "Prawn Delight",
-        description: "Fresh prawns in pepper sauce",
-        basePrice: 4200,
-        minPrice: 4200,
-      },
-      {
-        id: 502,
-        name: "Fish Pepper Soup",
-        description: "Spicy fish soup",
-        basePrice: 2800,
-        minPrice: 2800,
-      },
-      {
-        id: 503,
-        name: "Mixed Seafood Platter",
-        description: "Assorted seafood",
-        basePrice: 5500,
-        minPrice: 5500,
-      },
-    ],
-  },
-  {
-    id: 6,
-    name: "Crispy Chicken Hub",
-    category: "fast-food",
-    image:
-      "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.4,
-    deliveryTime: "20-35 min",
-    closingTime: "04:00",
-    status: "open",
-    featured: false,
-    menu: [
-      {
-        id: 601,
-        name: "Crispy Chicken Bucket",
-        description: "8 pieces of crispy chicken",
-        basePrice: 3800,
-        minPrice: 3800,
-      },
-      {
-        id: 602,
-        name: "Chicken & Chips",
-        description: "Fried chicken with fries",
-        basePrice: 2500,
-        minPrice: 2500,
-      },
-      {
-        id: 603,
-        name: "Spicy Chicken Wings",
-        description: "Hot and spicy wings",
-        basePrice: 2200,
-        minPrice: 2200,
-      },
-    ],
-  },
-  {
-    id: 7,
-    name: "Tasty Bites",
-    category: "local",
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.7,
-    deliveryTime: "25-40 min",
-    closingTime: "02:30",
-    status: "open",
-    featured: false,
-    menu: [
-      {
-        id: 701,
-        name: "Jollof Rice Special",
-        description: "Party jollof with chicken",
-        basePrice: 2000,
-        minPrice: 2000,
-      },
-      {
-        id: 702,
-        name: "Fried Rice Combo",
-        description: "Fried rice with assorted meat",
-        basePrice: 2200,
-        minPrice: 2200,
-      },
-      {
-        id: 703,
-        name: "Pounded Yam Set",
-        description: "Pounded yam with soup",
-        basePrice: 2800,
-        minPrice: 2800,
-      },
-    ],
-  },
-  {
-    id: 8,
-    name: "Sweet Treats Bakery",
-    category: "continental",
-    image:
-      "https://images.unsplash.com/photo-1556909211-36987daf7bcc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    rating: 4.9,
-    deliveryTime: "30-45 min",
-    closingTime: "01:00",
-    status: "open",
-    featured: false,
-    menu: [
-      {
-        id: 801,
-        name: "Red Velvet Cake",
-        description: "Slice of delicious cake",
-        basePrice: 1500,
-        minPrice: 1500,
-      },
-      {
-        id: 802,
-        name: "Chocolate Brownies",
-        description: "Freshly baked brownies",
-        basePrice: 1200,
-        minPrice: 1200,
-      },
-      {
-        id: 803,
-        name: "Assorted Pastries",
-        description: "Mix of 6 pastries",
-        basePrice: 2500,
-        minPrice: 2500,
-      },
-    ],
-  },
-];
+async function initApp() {
+  try {
+    // Load restaurant data
+    await loadRestaurants();
 
-// Featured items from random restaurants
-const featuredItems = [
-  {
-    id: 101,
-    restaurantId: 1,
-    name: "Spicy Suya Platter",
-    description: "Signature beef suya with spices",
-    price: 2500,
-    image:
-      "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 201,
-    restaurantId: 2,
-    name: "Edikaikong Soup",
-    description: "Traditional vegetable soup",
-    price: 3000,
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 301,
-    restaurantId: 3,
-    name: "Pepperoni Pizza",
-    description: "Large 14-inch pizza",
-    price: 4500,
-    image:
-      "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w-400&q=80",
-  },
-  {
-    id: 403,
-    restaurantId: 4,
-    name: "Grilled Chicken Salad",
-    description: "Healthy fresh salad",
-    price: 3200,
-    image:
-      "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-];
+    // Initialize time and service status
+    updateTime();
+    checkServiceHours();
+
+    // Initialize Swiper carousel
+    initSwiper();
+
+    // Render all components
+    renderRestaurants();
+    renderFeaturedItems();
+    renderHighlights();
+    renderAboutSection();
+    updateCartCount();
+
+    // Set up event listeners
+    setupEventListeners();
+
+    // Start auto-update intervals
+    startAutoUpdate();
+
+    console.log("Application initialized successfully");
+  } catch (error) {
+    console.error("Error initializing app:", error);
+    showNotification(
+      "Error loading application. Please refresh the page.",
+      "error",
+    );
+  }
+}
 
 // State Management
 let cart = JSON.parse(localStorage.getItem("nightBitesCart")) || [];
@@ -334,8 +47,8 @@ let currentRestaurant = null;
 // DOM Elements
 const restaurantGrid = document.getElementById("restaurantGrid");
 const featuredGrid = document.getElementById("featuredGrid");
+const highlightsGrid = document.getElementById("highlightsGrid");
 const cartCount = document.querySelector(".cart-count");
-const cartBtn = document.getElementById("cartBtn");
 const themeToggle = document.getElementById("themeToggle");
 const searchInput = document.getElementById("searchInput");
 const currentTimeEl = document.getElementById("currentTime");
@@ -362,34 +75,6 @@ function initSwiper() {
   });
 }
 
-// Initialize
-function init() {
-  updateTime();
-  initSwiper();
-  renderRestaurants();
-  renderFeaturedItems();
-  updateCartCount();
-  checkServiceHours();
-
-  // Set interval to update time and check service every minute
-  setInterval(() => {
-    updateTime();
-    checkServiceHours();
-    renderRestaurants();
-  }, 60000);
-
-  // Event Listeners
-  cartBtn.addEventListener("click", () => openModal("cartModal"));
-  themeToggle.addEventListener("click", toggleTheme);
-  searchInput.addEventListener("input", handleSearch);
-
-  // Check initial theme
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-}
-
 // Time Management
 function updateTime() {
   const now = new Date();
@@ -398,9 +83,9 @@ function updateTime() {
     minute: "2-digit",
     hour12: true,
   });
-  currentTimeEl.textContent = timeString;
-  document.getElementById("currentTime2").textContent = timeString;
-  document.getElementById("currentTime3").textContent = timeString;
+  if (currentTimeEl) {
+    currentTimeEl.textContent = timeString;
+  }
 }
 
 function checkServiceHours() {
@@ -410,25 +95,25 @@ function checkServiceHours() {
   const currentTime = currentHour * 60 + currentMinute;
 
   // Service hours: 6:00 PM (18:00) to 4:30 AM (4:30)
-  const serviceStart = 18 * 60; // 6:00 PM
-  const serviceEnd = 4 * 60 + 30; // 4:30 AM
+  const serviceStart = 18 * 60;
+  const serviceEnd = 4 * 60 + 30;
 
   let isServiceActive = false;
 
   if (currentHour >= 18) {
-    // After 6 PM, before midnight
     isServiceActive = currentTime >= serviceStart;
   } else if (currentHour < 4 || (currentHour === 4 && currentMinute <= 30)) {
-    // After midnight, before 4:30 AM
     isServiceActive = currentTime <= serviceEnd;
   }
 
-  if (isServiceActive) {
-    serviceStatusEl.textContent = "Service: Active";
-    serviceStatusEl.style.color = "var(--accent)";
-  } else {
-    serviceStatusEl.textContent = "Service: Closed (Opens 6:00 PM)";
-    serviceStatusEl.style.color = "var(--danger)";
+  if (serviceStatusEl) {
+    if (isServiceActive) {
+      serviceStatusEl.textContent = "Service: Active";
+      serviceStatusEl.style.color = "var(--accent)";
+    } else {
+      serviceStatusEl.textContent = "Service: Closed (Opens 6:00 PM)";
+      serviceStatusEl.style.color = "var(--danger)";
+    }
   }
 
   return isServiceActive;
@@ -443,7 +128,6 @@ function isRestaurantOpen(closingTime) {
   const [closeHour, closeMinute] = closingTime.split(":").map(Number);
   const closingTimeMinutes = closeHour * 60 + closeMinute;
 
-  // Convert closing time to 24-hour format if needed
   const adjustedClosingTime =
     closingTimeMinutes < 600
       ? closingTimeMinutes + 24 * 60
@@ -455,7 +139,20 @@ function isRestaurantOpen(closingTime) {
 
 // Restaurant Rendering
 function renderRestaurants(filteredRestaurants = restaurants) {
+  if (!restaurantGrid) return;
+
   restaurantGrid.innerHTML = "";
+
+  if (filteredRestaurants.length === 0) {
+    restaurantGrid.innerHTML = `
+            <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                <i class="fas fa-search" style="font-size: 3rem; color: var(--gray); margin-bottom: 1rem;"></i>
+                <h3>No restaurants found</h3>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        `;
+    return;
+  }
 
   filteredRestaurants.forEach((restaurant) => {
     const isOpen = isRestaurantOpen(restaurant.closingTime);
@@ -463,31 +160,34 @@ function renderRestaurants(filteredRestaurants = restaurants) {
     const card = document.createElement("div");
     card.className = "restaurant-card";
     card.innerHTML = `
-                    <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-img">
-                    <div class="restaurant-info">
-                        <div class="restaurant-header">
-                            <h3 class="restaurant-name">${restaurant.name}</h3>
-                            <span class="restaurant-status ${isOpen ? "status-open" : "status-closed"}">
-                                ${isOpen ? "Open" : "Closed"}
-                            </span>
-                        </div>
-                        <div class="restaurant-meta">
-                            <span><i class="fas fa-star"></i> ${restaurant.rating}</span>
-                            <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
-                            <span><i class="fas fa-tag"></i> ${restaurant.category}</span>
-                        </div>
-                        <p>Closes at: ${restaurant.closingTime} AM</p>
-                        <button class="menu-btn" onclick="openMenu(${restaurant.id})" ${!isOpen ? "disabled" : ""}>
-                            ${isOpen ? "View Menu" : "Closed"}
-                        </button>
-                    </div>
-                `;
+            <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-img" loading="lazy">
+            <div class="restaurant-info">
+                <div class="restaurant-header">
+                    <h3 class="restaurant-name">${restaurant.name}</h3>
+                    <span class="restaurant-status ${isOpen ? "status-open" : "status-closed"}">
+                        ${isOpen ? "Open" : "Closed"}
+                    </span>
+                </div>
+                <div class="restaurant-meta">
+                    <span><i class="fas fa-star"></i> ${restaurant.rating}</span>
+                    <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
+                    <span><i class="fas fa-tag"></i> ${restaurant.category}</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 0.5rem;">${restaurant.description}</p>
+                <p style="font-size: 0.85rem;">Closes at: ${restaurant.closingTime} AM</p>
+                <button class="menu-btn" onclick="openMenu(${restaurant.id})" ${!isOpen ? "disabled" : ""}>
+                    ${isOpen ? "View Menu" : "Closed"}
+                </button>
+            </div>
+        `;
     restaurantGrid.appendChild(card);
   });
 }
 
 // Featured Items Rendering
 function renderFeaturedItems() {
+  if (!featuredGrid) return;
+
   featuredGrid.innerHTML = "";
 
   featuredItems.forEach((item) => {
@@ -497,22 +197,123 @@ function renderFeaturedItems() {
     const card = document.createElement("div");
     card.className = "featured-card";
     card.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="featured-img">
-                    <div class="featured-info">
-                        <span class="featured-tag">Featured</span>
-                        <h3>${item.name}</h3>
-                        <p style="color: var(--gray); margin: 0.5rem 0;">${item.description}</p>
-                        <p style="color: var(--primary); font-weight: 700; font-size: 1.2rem; margin: 0.5rem 0;">₦${item.price.toLocaleString()}</p>
-                        <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem;">From: ${restaurant.name}</p>
-                        <button class="add-to-cart-btn" onclick="addFeaturedToCart(${item.id}, ${item.restaurantId})" style="width: 100%;">
-                            <i class="fas fa-cart-plus"></i> Add to Cart
-                        </button>
-                    </div>
-                `;
+            <img src="${item.image}" alt="${item.name}" class="featured-img" loading="lazy">
+            <div class="featured-info">
+                <span class="featured-tag">Featured</span>
+                <h3>${item.name}</h3>
+                <p style="color: var(--gray); margin: 0.5rem 0; font-size: 0.9rem;">${item.description}</p>
+                <p style="color: var(--primary); font-weight: 700; font-size: 1.2rem; margin: 0.5rem 0;">₦${item.price.toLocaleString()}</p>
+                <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem;">From: ${restaurant.name}</p>
+                <button class="add-to-cart-btn" onclick="addFeaturedToCart(${item.id}, ${item.restaurantId})">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            </div>
+        `;
     featuredGrid.appendChild(card);
   });
 }
 
+// Highlights Section (Restaurant of the Week + Most Popular Dish)
+function renderHighlights() {
+  if (!highlightsGrid) return;
+
+  // Get restaurant of the week (first featured restaurant)
+  const restaurantOfWeek =
+    restaurants.find((r) => r.featured) || restaurants[0];
+  const popularDish =
+    restaurantOfWeek.menu.find((m) => m.popular) || restaurantOfWeek.menu[0];
+
+  highlightsGrid.innerHTML = `
+        <!-- Restaurant of the Week -->
+        <div class="week-card">
+            <span class="week-badge">🏆 RESTAURANT OF THE WEEK</span>
+            <div>
+                <h3>${restaurantOfWeek.name}</h3>
+                <p style="opacity: 0.9; margin-bottom: 1rem;">${restaurantOfWeek.description}</p>
+                <div class="week-stats">
+                    <div class="week-stat">
+                        <div class="week-stat-value">${restaurantOfWeek.rating}</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Rating</div>
+                    </div>
+                    <div class="week-stat">
+                        <div class="week-stat-value">${restaurantOfWeek.deliveryTime}</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Delivery</div>
+                    </div>
+                    <div class="week-stat">
+                        <div class="week-stat-value">${restaurantOfWeek.closingTime}</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Closes</div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-btn" onclick="openMenu(${restaurantOfWeek.id})" style="background: white; color: #764ba2; margin-top: 1rem;">
+                Order Now
+            </button>
+        </div>
+        
+        <!-- Most Popular Dish -->
+        <div class="popular-card">
+            <span class="popular-badge">🔥 MOST POPULAR</span>
+            <div>
+                <h3>${popularDish.name}</h3>
+                <p style="opacity: 0.9; margin-bottom: 1rem;">${popularDish.description}</p>
+                <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">From: ${restaurantOfWeek.name}</p>
+                <div class="popular-stats">
+                    <div class="popular-stat">
+                        <div class="popular-stat-value">₦${popularDish.basePrice.toLocaleString()}</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Price</div>
+                    </div>
+                    <div class="popular-stat">
+                        <div class="popular-stat-value">4.9</div>
+                        <div style="opacity: 0.8; font-size: 0.9rem;">Rating</div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-btn" onclick="addToCart(${popularDish.id}, ${restaurantOfWeek.id})" style="background: white; color: var(--primary); margin-top: 1rem;">
+                <i class="fas fa-cart-plus"></i> Add to Cart - ₦${popularDish.basePrice.toLocaleString()}
+            </button>
+        </div>
+    `;
+}
+
+// About Section
+function renderAboutSection() {
+  const aboutSection = document.querySelector(".about-content");
+  if (!aboutSection) return;
+
+  aboutSection.innerHTML = `
+        <div class="about-text">
+            <h2>About <span>Calabar Night Bites</span></h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                We're Calabar's premier late-night food delivery service, bringing the best restaurants 
+                to your doorstep from 6:00 PM to 4:30 AM daily. Our mission is to satisfy your cravings 
+                with quality food from trusted vendors.
+            </p>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                Whether you're craving local delicacies, continental dishes, or midnight snacks, 
+                we've got you covered with our extensive network of restaurants and efficient delivery system.
+            </p>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Restaurants</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Calabar Night Bites Team" loading="lazy">
+        </div>
+    `;
+}
+
+// Filter Functions
 function filterRestaurants(type) {
   const buttons = document.querySelectorAll(".filter-btn");
   buttons.forEach((btn) => btn.classList.remove("active"));
@@ -545,10 +346,8 @@ function handleSearch() {
   }
 
   const filtered = restaurants.filter((restaurant) => {
-    // Search in restaurant name
     if (restaurant.name.toLowerCase().includes(term)) return true;
 
-    // Search in menu items
     return restaurant.menu.some(
       (item) =>
         item.name.toLowerCase().includes(term) ||
@@ -574,15 +373,15 @@ function openMenu(restaurantId) {
     const menuItem = document.createElement("div");
     menuItem.className = "menu-item";
     menuItem.innerHTML = `
-                    <div class="menu-item-info">
-                        <h4>${item.name} ${item.popular ? "🔥" : ""}</h4>
-                        <p>${item.description}</p>
-                        <p class="menu-item-price">₦${item.basePrice.toLocaleString()}</p>
-                    </div>
-                    <button class="add-to-cart-btn" onclick="addToCart(${item.id}, ${restaurantId})">
-                        Add to Cart
-                    </button>
-                `;
+            <div class="menu-item-info">
+                <h4>${item.name} ${item.popular ? "🔥" : ""}</h4>
+                <p>${item.description}</p>
+                <p class="menu-item-price">₦${item.basePrice.toLocaleString()}</p>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(${item.id}, ${restaurantId})">
+                Add to Cart
+            </button>
+        `;
     menuGrid.appendChild(menuItem);
   });
 
@@ -627,8 +426,7 @@ function updateCart() {
   localStorage.setItem("nightBitesCart", JSON.stringify(cart));
   updateCartCount();
 
-  // Update cart modal if open
-  if (document.getElementById("cartModal").classList.contains("active")) {
+  if (document.getElementById("cartModal")?.classList.contains("active")) {
     renderCart();
   }
 }
@@ -658,28 +456,28 @@ function renderCart() {
     const cartItem = document.createElement("div");
     cartItem.className = "cart-item";
     cartItem.innerHTML = `
-                    <div>
-                        <h4>${item.name}</h4>
-                        <p>${item.restaurantName}</p>
-                    </div>
-                    <div class="cart-item-controls">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                        </div>
-                        <div style="text-align: right;">
-                            <input type="number" class="price-input" 
-                                value="${item.price}" 
-                                min="${item.minPrice}"
-                                onchange="updatePrice(${index}, this.value)">
-                            <p>₦${(item.price * item.quantity).toLocaleString()}</p>
-                        </div>
-                        <button class="quantity-btn" onclick="removeFromCart(${index})" style="color: var(--danger);">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
+            <div>
+                <h4>${item.name}</h4>
+                <p>${item.restaurantName}</p>
+            </div>
+            <div class="cart-item-controls">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                    <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+                <div style="text-align: right;">
+                    <input type="number" class="price-input" 
+                        value="${item.price}" 
+                        min="${item.minPrice}"
+                        onchange="updatePrice(${index}, this.value)">
+                    <p style="margin-top: 5px;">₦${(item.price * item.quantity).toLocaleString()}</p>
+                </div>
+                <button class="quantity-btn" onclick="removeFromCart(${index})" style="color: var(--danger);">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
     cartItems.appendChild(cartItem);
   });
 
@@ -799,7 +597,7 @@ function submitOrder() {
   const orderId = "NB" + Date.now().toString().slice(-6);
   document.getElementById("orderId").textContent = orderId;
 
-  // Prepare order data for EmailJS
+  // Prepare order data
   const orderData = {
     order_id: orderId,
     customer_name: name,
@@ -821,7 +619,7 @@ function submitOrder() {
     order_time: new Date().toLocaleString(),
   };
 
-  // In a real implementation, you would send this via EmailJS
+  // In production, send via EmailJS
   console.log("Order submitted:", orderData);
 
   // Simulate successful order submission
@@ -857,28 +655,16 @@ function toggleTheme() {
 }
 
 function showNotification(message, type = "success") {
+  // Remove existing notifications
+  document.querySelectorAll(".notification").forEach((n) => n.remove());
+
   // Create notification element
   const notification = document.createElement("div");
-  notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === "success" ? "var(--success)" : "var(--danger)"};
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                box-shadow: var(--shadow);
-                z-index: 3000;
-                animation: slideIn 0.3s ease;
-                max-width: 300px;
-            `;
-
+  notification.className = `notification ${type === "error" ? "error" : ""}`;
   notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-${type === "success" ? "check-circle" : "exclamation-circle"}"></i>
-                    <span>${message}</span>
-                </div>
-            `;
+        <i class="fas fa-${type === "success" ? "check-circle" : "exclamation-circle"}"></i>
+        <span>${message}</span>
+    `;
 
   document.body.appendChild(notification);
 
@@ -889,20 +675,61 @@ function showNotification(message, type = "success") {
   }, 3000);
 }
 
-// Add CSS for animations
-const style = document.createElement("style");
-style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-document.head.appendChild(style);
+// Event Listeners Setup
+function setupEventListeners() {
+  // Cart button
+  document
+    .getElementById("cartBtn")
+    ?.addEventListener("click", () => openModal("cartModal"));
 
-// Initialize the app
-window.onload = init;
+  // Theme toggle
+  themeToggle?.addEventListener("click", toggleTheme);
+
+  // Search input
+  searchInput?.addEventListener("input", handleSearch);
+
+  // Check initial theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+
+  // Add to cart from anywhere
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-to-cart-btn")) {
+      const itemName = e.target
+        .closest(".menu-item")
+        ?.querySelector("h4")?.textContent;
+      if (itemName) {
+        showNotification(`${itemName} added to cart!`);
+      }
+    }
+  });
+}
+
+// Auto Update Functions
+function startAutoUpdate() {
+  // Update time every minute
+  setInterval(() => {
+    updateTime();
+    checkServiceHours();
+    renderRestaurants();
+  }, 60000);
+}
+
+// Make functions globally available
+window.filterRestaurants = filterRestaurants;
+window.filterByCategory = filterByCategory;
+window.openMenu = openMenu;
+window.addToCart = addToCart;
+window.addFeaturedToCart = addFeaturedToCart;
+window.updateQuantity = updateQuantity;
+window.updatePrice = updatePrice;
+window.removeFromCart = removeFromCart;
+window.selectLocation = selectLocation;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.copyAccount = copyAccount;
+window.submitOrder = submitOrder;
+window.toggleTheme = toggleTheme;
+window.showNotification = showNotification;

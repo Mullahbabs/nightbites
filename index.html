@@ -12,28 +12,30 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <style>
-      @import url("css/style.css");
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍴</text></svg>"
+    />
   </head>
   <body>
     <!-- Header -->
     <header>
-      <div class="nav-container">
-        <div class="logo">
-          <i class="fas fa-utensils"></i>
-          <span>Calabar Night Bites</span>
-        </div>
-        <div class="nav-controls">
-          <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
-          </button>
-          <button class="cart-btn" id="cartBtn">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
-          </button>
+      <div class="container">
+        <div class="nav-container">
+          <a href="#" class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>Calabar Night Bites</span>
+          </a>
+          <div class="nav-controls">
+            <button class="theme-toggle" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+            <button class="cart-btn" id="cartBtn">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -77,7 +79,7 @@
               </p>
               <div class="time-display">
                 <i class="fas fa-clock"></i>
-                <span id="currentTime2">Loading...</span> •
+                <span>Loading...</span> •
                 <span style="color: var(--accent)">Delivery: 30-45 mins</span>
               </div>
             </div>
@@ -96,7 +98,7 @@
               </p>
               <div class="time-display">
                 <i class="fas fa-clock"></i>
-                <span id="currentTime3">Loading...</span> •
+                <span>Loading...</span> •
                 <span style="color: var(--accent)"
                   >Traditional Taste Guaranteed</span
                 >
@@ -110,161 +112,84 @@
 
     <!-- Search & Filter -->
     <section class="search-container">
-      <div class="search-box">
-        <input
-          type="text"
-          class="search-input"
-          id="searchInput"
-          placeholder="Search restaurants or menu items..."
-        />
-        <button class="filter-btn active" onclick="filterRestaurants('all')">
-          All
-        </button>
-        <button class="filter-btn" onclick="filterRestaurants('open')">
-          Open Now
-        </button>
-      </div>
-      <div class="filter-container">
-        <button class="filter-btn" onclick="filterByCategory('all')">
-          All Cuisines
-        </button>
-        <button class="filter-btn" onclick="filterByCategory('local')">
-          Local
-        </button>
-        <button class="filter-btn" onclick="filterByCategory('continental')">
-          Continental
-        </button>
-        <button class="filter-btn" onclick="filterByCategory('grill')">
-          Grill
-        </button>
-        <button class="filter-btn" onclick="filterByCategory('fast-food')">
-          Fast Food
-        </button>
-      </div>
-    </section>
-
-    <!-- Restaurant of the Week -->
-    <section class="restaurant-week">
-      <h2 class="section-title">Restaurant of the <span>Week</span></h2>
-      <div class="week-card">
-        <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-          class="week-image"
-          alt="Restaurant of the Week"
-        />
-        <div class="week-info">
-          <span class="week-badge">🏆 RESTAURANT OF THE WEEK</span>
-          <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
-            Continental Delight
-          </h3>
-          <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9">
-            Voted best continental restaurant in Calabar for 3 consecutive
-            months. Specializing in gourmet dishes with local twists.
-          </p>
-          <div style="display: flex; gap: 2rem; margin-bottom: 2rem">
-            <div>
-              <div style="font-size: 2rem; font-weight: 800">4.8</div>
-              <div style="opacity: 0.8">Rating</div>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 800">35-50</div>
-              <div style="opacity: 0.8">Min Delivery</div>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: 800">1:00</div>
-              <div style="opacity: 0.8">AM Close</div>
-            </div>
-          </div>
-          <button
-            class="menu-btn"
-            onclick="openMenu(4)"
-            style="background: white; color: #764ba2"
-          >
-            Order Now
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Most Popular Dish -->
-    <section class="popular-dish">
-      <h2 class="section-title">Most <span>Popular</span> Dish</h2>
-      <div class="popular-card">
-        <div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              margin-bottom: 1rem;
-            "
-          >
-            <span
-              style="
-                background: white;
-                color: var(--primary);
-                padding: 0.5rem 1.5rem;
-                border-radius: 50px;
-                font-weight: 600;
-              "
-              >🔥 HOT ITEM</span
-            >
-            <span style="opacity: 0.9">From: Night Grill Express</span>
-          </div>
-          <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
-            Spicy Suya Platter
-          </h3>
-          <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9">
-            Our signature spicy beef suya with secret spices, served with
-            onions, tomatoes, and spicy pepper sauce.
-          </p>
-          <div class="popular-stats">
-            <div class="stat">
-              <div class="stat-value">850+</div>
-              <div>Orders This Week</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">4.9</div>
-              <div>Average Rating</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">₦2,500</div>
-              <div>Starting Price</div>
-            </div>
-          </div>
-          <button
-            class="menu-btn"
-            onclick="addFeaturedToCart(101, 1)"
-            style="background: white; color: var(--primary); margin-top: 1rem"
-          >
-            <i class="fas fa-cart-plus"></i> Add to Cart - ₦2,500
-          </button>
-        </div>
-        <div style="text-align: center">
-          <img
-            src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-            style="
-              width: 100%;
-              border-radius: 20px;
-              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            "
-            alt="Suya"
+      <div class="container">
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search restaurants or menu items..."
           />
+          <div class="filter-container">
+            <button
+              class="filter-btn active"
+              onclick="filterRestaurants('all')"
+            >
+              All
+            </button>
+            <button class="filter-btn" onclick="filterRestaurants('open')">
+              Open Now
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('all')">
+              All Cuisines
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('local')">
+              Local
+            </button>
+            <button
+              class="filter-btn"
+              onclick="filterByCategory('continental')"
+            >
+              Continental
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('grill')">
+              Grill
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('fast-food')">
+              Fast Food
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Section (Restaurant of the Week + Most Popular Dish) -->
+    <section class="highlights-section">
+      <div class="container">
+        <h2 class="section-title">Weekly <span>Highlights</span></h2>
+        <div class="highlights-grid" id="highlightsGrid">
+          <!-- Content loaded by JavaScript -->
         </div>
       </div>
     </section>
 
     <!-- Featured Items -->
-    <section class="featured-items">
-      <h2 class="section-title">Featured <span>Items</span></h2>
-      <div class="featured-grid" id="featuredGrid">
-        <!-- Populated by JavaScript -->
+    <section class="featured-section">
+      <div class="container">
+        <h2 class="section-title">Featured <span>Items</span></h2>
+        <div class="featured-grid" id="featuredGrid">
+          <!-- Content loaded by JavaScript -->
+        </div>
       </div>
     </section>
 
     <!-- Restaurant Grid -->
-    <section class="restaurant-grid" id="restaurantGrid">
-      <!-- Populated by JavaScript -->
+    <section class="restaurant-section">
+      <div class="container">
+        <h2 class="section-title">All <span>Restaurants</span></h2>
+        <div class="restaurant-grid" id="restaurantGrid">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
     </section>
 
     <!-- Ads Section -->
@@ -307,6 +232,47 @@
       </div>
     </section>
 
+    <!-- App Coming Soon Banner -->
+    <section class="app-banner">
+      <div class="container">
+        <div class="app-banner-content">
+          <h2>📱 Mobile App Coming Soon!</h2>
+          <p>
+            Get ready for a seamless ordering experience on your phone. Faster
+            deliveries, exclusive app-only offers, and easy tracking.
+          </p>
+          <div class="store-buttons">
+            <button
+              class="store-btn"
+              onclick="
+                showNotification('App Store version coming soon!', 'success')
+              "
+            >
+              <i class="fab fa-apple"></i>
+              <div>
+                <div style="font-size: 0.8rem">Download on the</div>
+                <div style="font-size: 1.1rem; font-weight: 700">App Store</div>
+              </div>
+            </button>
+            <button
+              class="store-btn"
+              onclick="
+                showNotification('Google Play version coming soon!', 'success')
+              "
+            >
+              <i class="fab fa-google-play"></i>
+              <div>
+                <div style="font-size: 0.8rem">Get it on</div>
+                <div style="font-size: 1.1rem; font-weight: 700">
+                  Google Play
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Modals -->
     <!-- Menu Modal -->
     <div class="modal" id="menuModal">
@@ -319,7 +285,7 @@
         </div>
         <div class="modal-body">
           <div class="menu-grid" id="menuGrid">
-            <!-- Menu items populated by JavaScript -->
+            <!-- Menu items loaded by JavaScript -->
           </div>
         </div>
       </div>
@@ -336,14 +302,17 @@
         </div>
         <div class="modal-body">
           <div id="cartItems">
-            <!-- Cart items populated by JavaScript -->
+            <!-- Cart items loaded by JavaScript -->
           </div>
           <div id="cartEmpty" style="text-align: center; padding: 2rem">
             <i
               class="fas fa-shopping-cart"
-              style="font-size: 3rem; color: #ccc; margin-bottom: 1rem"
+              style="font-size: 2.5rem; color: #ccc; margin-bottom: 1rem"
             ></i>
             <p>Your cart is empty</p>
+            <p style="color: var(--gray); margin-top: 0.5rem">
+              Add items from restaurants to get started
+            </p>
           </div>
           <div id="cartCheckout" style="display: none">
             <div class="checkout-form">
@@ -417,7 +386,7 @@
                 <h3>Total to Pay</h3>
                 <p
                   style="
-                    font-size: 2rem;
+                    font-size: 1.8rem;
                     font-weight: bold;
                     color: var(--primary);
                   "
@@ -434,14 +403,23 @@
                     border-radius: 5px;
                   "
                 >
-                  <p style="font-family: monospace; font-size: 1.2rem">
-                    0123456789 • Calabar Night Bites Ltd.
+                  <p
+                    style="
+                      font-family: monospace;
+                      font-size: 1.1rem;
+                      word-break: break-all;
+                    "
+                  >
+                    0123456789
+                  </p>
+                  <p style="font-size: 0.9rem; margin: 0.5rem 0">
+                    Calabar Night Bites Ltd.
                   </p>
                   <button class="copy-btn" onclick="copyAccount()">
                     <i class="fas fa-copy"></i> Copy Account
                   </button>
                 </div>
-                <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8">
+                <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8">
                   <i class="fas fa-info-circle"></i> Please transfer the exact
                   amount and use your name as reference
                 </p>
@@ -495,14 +473,40 @@
 
     <!-- Footer -->
     <footer>
-      <p>© 2025 Calabar Night Bites. All rights reserved.</p>
-      <p style="margin-top: 1rem; opacity: 0.8">
-        <i class="fas fa-clock"></i> Service Hours: 6:00 PM - 4:30 AM Daily |
-        <i class="fas fa-phone"></i> Support: 0800-CALABAR |
-        <i class="fas fa-map-marker-alt"></i> Calabar, Nigeria
-      </p>
+      <div class="container">
+        <div class="footer-content">
+          <p
+            style="
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--primary);
+              margin-bottom: 1rem;
+            "
+          >
+            Calabar Night Bites
+          </p>
+          <p>© 2025 Calabar Night Bites. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#"><i class="fas fa-phone"></i> 0800-CALABAR</a>
+            <a href="#"
+              ><i class="fas fa-envelope"></i> support@calabarnightbites.com</a
+            >
+            <a href="#"
+              ><i class="fas fa-map-marker-alt"></i> Calabar, Nigeria</a
+            >
+            <a href="#"><i class="fas fa-clock"></i> 6:00 PM - 4:30 AM Daily</a>
+          </div>
+          <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9rem">
+            Satisfying your late-night cravings since 2024
+          </p>
+        </div>
+      </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="js/restaurants.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
