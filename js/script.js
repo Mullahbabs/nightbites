@@ -390,7 +390,7 @@ function openMenu(restaurantId) {
 
 // Cart Management
 function addToCart(menuItemId, restaurantId) {
-  const restaurant = restaurants.find((r) => r.id === restaurantId);
+  const restaurant = restaurant.find((r) => r.id === restaurantId);
   const menuItem = restaurant.menu.find((m) => m.id === menuItemId);
 
   const existingItem = cart.find(
