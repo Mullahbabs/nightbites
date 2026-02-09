@@ -1,282 +1,581 @@
 [
   {
     "id": 1,
-    "name": "Night Grill Express",
-    "category": "grill",
-    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.7,
+    "name": "Daddy K's Kitchen",
+    "category": "fast-food",
+    "image": "/img/daddykfried.png",
+    "rating": 4.8,
     "deliveryTime": "25-40 min",
-    "closingTime": "04:00",
+    "closingTime": "04:30",
     "status": "open",
     "featured": true,
-    "description": "Best grilled meats in Calabar, open till 4am",
+    "description": "Delicious noodles, rice dishes, and grilled meats",
     "menu": [
       {
-        "id": 101,
-        "name": "Suya Platter",
-        "description": "Spicy grilled beef skewers",
-        "basePrice": 2500,
-        "minPrice": 2500,
+        "id": 5,
+        "name": "Noodles & Egg",
+        "description": "One Indomie & One egg, (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950,
         "popular": true
       },
       {
-        "id": 102,
-        "name": "Chicken Wings",
-        "description": "Crispy fried chicken wings",
-        "basePrice": 1800,
-        "minPrice": 1800
+        "id": 6,
+        "name": "Noodles & Egg",
+        "description": "One Indomie & two eggs, (medium pack)",
+        "basePrice": 1450,
+        "minPrice": 1450
       },
       {
-        "id": 103,
-        "name": "Grilled Fish",
-        "description": "Fresh tilapia with spices",
-        "basePrice": 3500,
-        "minPrice": 3500
+        "id": 7,
+        "name": "Noodles & Egg",
+        "description": "Two pack Indomie & two eggs, (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 8,
+        "name": "Fried Rice",
+        "description": "Tasty fried rice (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950
+      },
+      {
+        "id": 9,
+        "name": "Fried Rice",
+        "description": "Tasty fried rice (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 10,
+        "name": "Jollof Rice",
+        "description": "Spicy tomato rice (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950
+      },
+      {
+        "id": 11,
+        "name": "Jollof Rice",
+        "description": "Spicy tomato rice (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 12,
+        "name": "Fried Plantain",
+        "description": "Ripe plantain fried to perfection (per piece)",
+        "basePrice": 200,
+        "minPrice": 200
+      },
+      {
+        "id": 13,
+        "name": "Fried Chicken",
+        "description": "Well fried chicken",
+        "basePrice": 2200,
+        "minPrice": 2200,
+        "popular": true
+      },
+      {
+        "id": 14,
+        "name": "Moi-Moi",
+        "description": "Hot steamed beans moi-moi",
+        "basePrice": 1100,
+        "minPrice": 1100
+      },
+      {
+        "id": 15,
+        "name": "Turkey",
+        "description": "Spicy fried Turkey",
+        "basePrice": 4700,
+        "minPrice": 4700
+      },
+      {
+        "id": 16,
+        "name": "Fried Fish",
+        "description": "Spicy Fried Titus fish (middle piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 17,
+        "name": "Fried Fish",
+        "description": "Spicy Fried Titus fish (tail piece)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 18,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (middle piece)",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 19,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (tail piece)",
+        "basePrice": 2100,
+        "minPrice": 2100
+      },
+      {
+        "id": 20,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (head piece)",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 21,
+        "name": "Irish Chips",
+        "description": "Fried Irish potato chips (mini pack)",
+        "basePrice": 2200,
+        "minPrice": 2200
+      },
+      {
+        "id": 22,
+        "name": "Irish Chips",
+        "description": "Fried Irish potato chips (maxi pack)",
+        "basePrice": 3200,
+        "minPrice": 3200
+      },
+      {
+        "id": 23,
+        "name": "Sweet Chips",
+        "description": "Fried sweet potato chips (mini pack)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 24,
+        "name": "Sweet Chips",
+        "description": "Fried sweet potato chips (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 25,
+        "name": "Gizzard",
+        "description": "1 piece fried chicken gizzard",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 26,
+        "name": "Goat Meat",
+        "description": "Peppered goat meat (one stick)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 27,
+        "name": "Cow Leg",
+        "description": "peppered cow leg (one piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 28,
+        "name": "Sharki",
+        "description": "peppered sharki (one piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 29,
+        "name": "Kpomo",
+        "description": "peppered kpomo (one piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 30,
+        "name": "Beef",
+        "description": "peppered beef (one piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 31,
+        "name": "Snails",
+        "description": "peppered snails (one stick)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 32,
+        "name": "Coleslaw Salad",
+        "description": "Vegetable salad (As top)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 33,
+        "name": "Coleslaw Salad",
+        "description": "Vegetable salad (cup size)",
+        "basePrice": 1100,
+        "minPrice": 1100
+      },
+      {
+        "id": 34,
+        "name": "Boiled Egg",
+        "description": "Boiled egg (one piece)",
+        "basePrice": 450,
+        "minPrice": 450
+      },
+      {
+        "id": 35,
+        "name": "Fried Egg",
+        "description": "Fried egg (one piece)",
+        "basePrice": 450,
+        "minPrice": 450
       }
     ]
   },
   {
     "id": 2,
-    "name": "Mama Eka's Kitchen",
+    "name": "Ifeco's Kitchen",
     "category": "local",
-    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/img/ifecomininoodles.jpg",
     "rating": 4.9,
     "deliveryTime": "30-45 min",
-    "closingTime": "02:00",
+    "closingTime": "04:30",
     "status": "open",
     "featured": true,
-    "description": "Authentic Calabar cuisine made with love",
+    "description": "Authentic Calabar cuisine with variety of local dishes",
     "menu": [
       {
-        "id": 201,
-        "name": "Edikaikong Soup",
-        "description": "Vegetable soup with assorted meat",
-        "basePrice": 3000,
-        "minPrice": 3000
+        "id": 36,
+        "name": "Noodles & Egg",
+        "description": "One Indomie & One egg, (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950,
+        "popular": true
       },
       {
-        "id": 202,
-        "name": "Afang Soup",
-        "description": "Traditional Calabar soup",
-        "basePrice": 2800,
-        "minPrice": 2800
+        "id": 37,
+        "name": "Noodles & Egg",
+        "description": "Two pack Indomie & one egg, (maxi pack)",
+        "basePrice": 1600,
+        "minPrice": 1600
       },
       {
-        "id": 203,
-        "name": "Fisherman Soup",
-        "description": "Spicy seafood delight",
-        "basePrice": 4000,
-        "minPrice": 4000
+        "id": 38,
+        "name": "Fried Rice",
+        "description": "Tasty fried rice (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950
+      },
+      {
+        "id": 39,
+        "name": "Fried Rice",
+        "description": "Tasty fried rice (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 40,
+        "name": "Jollof Rice",
+        "description": "Spicy tomato rice (mini pack)",
+        "basePrice": 950,
+        "minPrice": 950
+      },
+      {
+        "id": 41,
+        "name": "Jollof Rice",
+        "description": "Spicy tomato rice (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 42,
+        "name": "Coconut Rice",
+        "description": "Spicy coconut rice (mini pack)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 43,
+        "name": "Coconut Rice",
+        "description": "Spicy coconut rice (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 44,
+        "name": "Fried Plantain",
+        "description": "Ripe plantain fried to perfection (3 pieces)",
+        "basePrice": 500,
+        "minPrice": 500
+      },
+      {
+        "id": 45,
+        "name": "Fried Chicken",
+        "description": "Well fried chicken wing",
+        "basePrice": 3200,
+        "minPrice": 3200,
+        "popular": true
+      },
+      {
+        "id": 46,
+        "name": "Fried Chicken",
+        "description": "Well fried chicken lap",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 47,
+        "name": "Moi-Moi",
+        "description": "Hot steamed beans moi-moi",
+        "basePrice": 1100,
+        "minPrice": 1100
+      },
+      {
+        "id": 48,
+        "name": "Turkey",
+        "description": "Spicy fried Turkey",
+        "basePrice": 5200,
+        "minPrice": 5200
+      },
+      {
+        "id": 49,
+        "name": "Fried Fish",
+        "description": "Spicy Fried Titus fish (middle piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 50,
+        "name": "Fried Fish",
+        "description": "Spicy Fried Titus fish (tail piece)",
+        "basePrice": 1000,
+        "minPrice": 1000
+      },
+      {
+        "id": 51,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (middle piece)",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 52,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (tail piece)",
+        "basePrice": 2100,
+        "minPrice": 2100
+      },
+      {
+        "id": 53,
+        "name": "Fried croaker Fish",
+        "description": "Fried croaker fish (head piece)",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 54,
+        "name": "Sweet Chips",
+        "description": "Fried sweet potato chips (mini pack)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 55,
+        "name": "Sweet Chips",
+        "description": "Fried sweet potato chips (maxi pack)",
+        "basePrice": 1700,
+        "minPrice": 1700
+      },
+      {
+        "id": 56,
+        "name": "Gizzard",
+        "description": "1 piece fried chicken gizzard",
+        "basePrice": 1600,
+        "minPrice": 1600
+      },
+      {
+        "id": 57,
+        "name": "Goat Meat",
+        "description": "Peppered goat meat (one Piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 58,
+        "name": "Kpomo",
+        "description": "peppered kpomo (one piece)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 59,
+        "name": "Beef",
+        "description": "fried beef (one piece)",
+        "basePrice": 300,
+        "minPrice": 300
+      },
+      {
+        "id": 60,
+        "name": "Snails",
+        "description": "peppered snails (one stick)",
+        "basePrice": 1200,
+        "minPrice": 1200
+      },
+      {
+        "id": 61,
+        "name": "Coleslaw Salad",
+        "description": "Vegetable salad (as top)",
+        "basePrice": 600,
+        "minPrice": 600
+      },
+      {
+        "id": 62,
+        "name": "Coleslaw Salad",
+        "description": "Vegetable salad (cup size)",
+        "basePrice": 1100,
+        "minPrice": 1100
+      },
+      {
+        "id": 63,
+        "name": "Boiled Egg",
+        "description": "Boiled egg (one piece)",
+        "basePrice": 450,
+        "minPrice": 450
+      },
+      {
+        "id": 64,
+        "name": "Fried Egg",
+        "description": "Fried egg (one piece)",
+        "basePrice": 450,
+        "minPrice": 450
       }
     ]
   },
   {
     "id": 3,
-    "name": "Pizza Palace",
-    "category": "fast-food",
-    "image": "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.5,
+    "name": "Office Pub Kitchen",
+    "category": "local",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "rating": 4.6,
     "deliveryTime": "35-50 min",
-    "closingTime": "03:30",
+    "closingTime": "02:00",
     "status": "open",
     "featured": false,
-    "description": "Freshly baked pizzas delivered hot",
+    "description": "Traditional Calabar soups and local delicacies",
     "menu": [
       {
-        "id": 301,
-        "name": "Pepperoni Pizza",
-        "description": "Large 14-inch pizza",
-        "basePrice": 4500,
-        "minPrice": 4500
+        "id": 65,
+        "name": "Edikang Ikong",
+        "description": "Pumpkin leaves and waterleaf soup",
+        "basePrice": 2200,
+        "minPrice": 2200,
+        "popular": true
       },
       {
-        "id": 302,
-        "name": "BBQ Chicken Pizza",
-        "description": "Smoky chicken delight",
-        "basePrice": 5000,
-        "minPrice": 5000
+        "id": 66,
+        "name": "Fisherman Soup",
+        "description": "Rich seafood soup",
+        "basePrice": 3000,
+        "minPrice": 3000
       },
       {
-        "id": 303,
-        "name": "Vegetarian Pizza",
-        "description": "Fresh vegetable mix",
-        "basePrice": 4000,
-        "minPrice": 4000
+        "id": 67,
+        "name": "White Rice & Stew",
+        "description": "Local rice with beef stew",
+        "basePrice": 1500,
+        "minPrice": 1500
+      },
+      {
+        "id": 68,
+        "name": "Moi Moi",
+        "description": "Steamed bean pudding",
+        "basePrice": 700,
+        "minPrice": 700
       }
     ]
   },
   {
     "id": 4,
-    "name": "Continental Delight",
-    "category": "continental",
-    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.8,
-    "deliveryTime": "40-55 min",
+    "name": "Chef Green's Kitchen",
+    "category": "local",
+    "image": "/img/ekpangmax.jpg",
+    "rating": 4.7,
+    "deliveryTime": "20-30 min",
     "closingTime": "01:00",
     "status": "open",
     "featured": true,
-    "description": "Gourmet continental dishes with local twists",
+    "description": "Specializing in Ekpang and traditional Calabar soups",
     "menu": [
       {
-        "id": 401,
-        "name": "Beef Burger",
-        "description": "Juicy beef with cheese",
-        "basePrice": 2200,
-        "minPrice": 2200
-      },
-      {
-        "id": 402,
-        "name": "Spaghetti Bolognese",
-        "description": "Italian pasta special",
-        "basePrice": 2800,
-        "minPrice": 2800
-      },
-      {
-        "id": 403,
-        "name": "Grilled Chicken Salad",
-        "description": "Healthy fresh salad",
+        "id": 69,
+        "name": "Ekpang Mini",
+        "description": "Hot Ekpang with fish & cow-skin (mini pack)",
         "basePrice": 3200,
-        "minPrice": 3200
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Seafood Harbor",
-    "category": "local",
-    "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.6,
-    "deliveryTime": "45-60 min",
-    "closingTime": "03:00",
-    "status": "open",
-    "featured": false,
-    "description": "Fresh seafood from Calabar waters",
-    "menu": [
+        "minPrice": 3200,
+        "popular": true
+      },
       {
-        "id": 501,
-        "name": "Prawn Delight",
-        "description": "Fresh prawns in pepper sauce",
+        "id": 70,
+        "name": "Ekpang Max",
+        "description": "Hot Ekpang with fish, cow-skin, goat meat (medium pack)",
         "basePrice": 4200,
         "minPrice": 4200
       },
       {
-        "id": 502,
-        "name": "Fish Pepper Soup",
-        "description": "Spicy fish soup",
+        "id": 71,
+        "name": "Ekpang Pro-Max",
+        "description": "Hot Ekpang with fish, cow-skin, goat meat & snails (maxi pack)",
+        "basePrice": 5200,
+        "minPrice": 5200
+      },
+      {
+        "id": 72,
+        "name": "White Rice & Ofe-akwu",
+        "description": "white rice & banga sauce (mini)",
         "basePrice": 2800,
         "minPrice": 2800
       },
       {
-        "id": 503,
-        "name": "Mixed Seafood Platter",
-        "description": "Assorted seafood",
-        "basePrice": 5500,
-        "minPrice": 5500
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Crispy Chicken Hub",
-    "category": "fast-food",
-    "image": "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.4,
-    "deliveryTime": "20-35 min",
-    "closingTime": "04:00",
-    "status": "open",
-    "featured": false,
-    "description": "Crispy fried chicken at its best",
-    "menu": [
-      {
-        "id": 601,
-        "name": "Crispy Chicken Bucket",
-        "description": "8 pieces of crispy chicken",
-        "basePrice": 3800,
-        "minPrice": 3800
+        "id": 73,
+        "name": "White Rice & Ofe-akwu",
+        "description": "white rice & banga sauce (maxi)",
+        "basePrice": 3200,
+        "minPrice": 3200
       },
       {
-        "id": 602,
-        "name": "Chicken & Chips",
-        "description": "Fried chicken with fries",
-        "basePrice": 2500,
-        "minPrice": 2500
+        "id": 74,
+        "name": "Garri & Afang Soup",
+        "description": "Eba & afang soup",
+        "basePrice": 1700,
+        "minPrice": 1700
       },
       {
-        "id": 603,
-        "name": "Spicy Chicken Wings",
-        "description": "Hot and spicy wings",
-        "basePrice": 2200,
-        "minPrice": 2200
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Tasty Bites",
-    "category": "local",
-    "image": "https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.7,
-    "deliveryTime": "25-40 min",
-    "closingTime": "02:30",
-    "status": "open",
-    "featured": false,
-    "description": "Authentic local dishes for every taste",
-    "menu": [
-      {
-        "id": 701,
-        "name": "Jollof Rice Special",
-        "description": "Party jollof with chicken",
-        "basePrice": 2000,
-        "minPrice": 2000
+        "id": 75,
+        "name": "Garri & Vegetable Soup",
+        "description": "Eba & vegetable soup",
+        "basePrice": 1700,
+        "minPrice": 1700
       },
       {
-        "id": 702,
-        "name": "Fried Rice Combo",
-        "description": "Fried rice with assorted meat",
-        "basePrice": 2200,
-        "minPrice": 2200
+        "id": 76,
+        "name": "Garri & Bitter-leaf Soup",
+        "description": "Eba & bitter-leaf soup",
+        "basePrice": 1700,
+        "minPrice": 1700
       },
       {
-        "id": 703,
-        "name": "Pounded Yam Set",
-        "description": "Pounded yam with soup",
-        "basePrice": 2800,
-        "minPrice": 2800
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Sweet Treats Bakery",
-    "category": "continental",
-    "image": "https://images.unsplash.com/photo-1556909211-36987daf7bcc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "rating": 4.9,
-    "deliveryTime": "30-45 min",
-    "closingTime": "01:00",
-    "status": "open",
-    "featured": false,
-    "description": "Freshly baked pastries and desserts",
-    "menu": [
-      {
-        "id": 801,
-        "name": "Red Velvet Cake",
-        "description": "Slice of delicious cake",
-        "basePrice": 1500,
-        "minPrice": 1500
+        "id": 77,
+        "name": "Garri & Editang Soup",
+        "description": "Eba & editang soup",
+        "basePrice": 1700,
+        "minPrice": 1700
       },
       {
-        "id": 802,
-        "name": "Chocolate Brownies",
-        "description": "Freshly baked brownies",
-        "basePrice": 1200,
-        "minPrice": 1200
-      },
-      {
-        "id": 803,
-        "name": "Assorted Pastries",
-        "description": "Mix of 6 pastries",
-        "basePrice": 2500,
-        "minPrice": 2500
+        "id": 78,
+        "name": "Boiled Egg",
+        "description": "Hard boiled egg",
+        "basePrice": 300,
+        "minPrice": 300
       }
     ]
   }

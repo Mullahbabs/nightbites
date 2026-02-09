@@ -294,11 +294,11 @@ function renderAboutSection() {
             </p>
             <div class="about-stats">
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">5+</div>
                     <div class="stat-label">Restaurants</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">10,000+</div>
+                    <div class="stat-number">600+</div>
                     <div class="stat-label">Happy Customers</div>
                 </div>
                 <div class="stat-item">
@@ -308,7 +308,7 @@ function renderAboutSection() {
             </div>
         </div>
         <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Calabar Night Bites Team" loading="lazy">
+            <img src="img/2.png" alt="Calabar Night Bites Team" loading="lazy">
         </div>
     `;
 }
@@ -390,7 +390,7 @@ function openMenu(restaurantId) {
 
 // Cart Management
 function addToCart(menuItemId, restaurantId) {
-  const restaurant = restaurant.find((r) => r.id === restaurantId);
+  const restaurant = restaurants.find((r) => r.id === restaurantId);
   const menuItem = restaurant.menu.find((m) => m.id === menuItemId);
 
   const existingItem = cart.find(
@@ -414,7 +414,7 @@ function addToCart(menuItemId, restaurantId) {
   }
 
   updateCart();
-  closeModal("menuModal");
+
   showNotification(`${menuItem.name} added to cart!`);
 }
 

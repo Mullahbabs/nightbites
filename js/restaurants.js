@@ -2,6 +2,7 @@
 // In production, this would be an API call
 
 let restaurants = [];
+let featuredItems = [];
 
 // Function to load restaurants from JSON file
 async function loadRestaurants() {
@@ -9,95 +10,132 @@ async function loadRestaurants() {
     const response = await fetch("data/restaurants.json");
     restaurants = await response.json();
     console.log("Restaurants loaded successfully:", restaurants.length);
+
+    // Generate featured items from the loaded data
+    generateFeaturedItems();
+
     return restaurants;
   } catch (error) {
     console.error("Error loading restaurants:", error);
     // Fallback to sample data if JSON fails to load
     restaurants = getSampleRestaurants();
+    generateFeaturedItems();
     return restaurants;
   }
 }
 
-// Fallback sample data in case JSON fails
+// Generate featured items from restaurants
+function generateFeaturedItems() {
+  featuredItems = [];
+
+  // Get popular items from different restaurants
+  restaurants.forEach((restaurant) => {
+    const popularItems = restaurant.menu.filter((item) => item.popular);
+
+    if (popularItems.length > 0) {
+      const featuredItem = popularItems[0];
+      featuredItems.push({
+        id: featuredItem.id,
+        restaurantId: restaurant.id,
+        name: featuredItem.name,
+        description: featuredItem.description,
+        price: featuredItem.basePrice,
+        image: restaurant.image, // Using restaurant image for featured items
+      });
+    }
+  });
+
+  // Ensure we have at least 4 featured items
+  while (featuredItems.length < 4 && restaurants.length > 0) {
+    restaurants.forEach((restaurant) => {
+      if (featuredItems.length < 4 && restaurant.menu.length > 0) {
+        const firstItem = restaurant.menu[0];
+        // Check if item is already in featured
+        if (!featuredItems.find((item) => item.id === firstItem.id)) {
+          featuredItems.push({
+            id: firstItem.id,
+            restaurantId: restaurant.id,
+            name: firstItem.name,
+            description: firstItem.description,
+            price: firstItem.basePrice,
+            image: restaurant.image,
+          });
+        }
+      }
+    });
+  }
+
+  console.log("Featured items generated:", featuredItems.length);
+}
+
+// Fallback sample data in case JSON fails to load
 function getSampleRestaurants() {
   return [
     {
       id: 1,
-      name: "Night Grill Express",
-      category: "grill",
+      name: "Daddy K's Kitchen",
+      category: "fast-food",
       image:
-        "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      rating: 4.7,
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      rating: 4.8,
       deliveryTime: "25-40 min",
       closingTime: "04:00",
       status: "open",
       featured: true,
-      description: "Best grilled meats in Calabar, open till 4am",
+      description: "Delicious noodles, rice dishes, and grilled meats",
       menu: [
         {
-          id: 101,
-          name: "Suya Platter",
-          description: "Spicy grilled beef skewers",
-          basePrice: 2500,
-          minPrice: 2500,
+          id: 5,
+          name: "Noodles & Egg",
+          description: "One Indomie & One egg, (mini pack)",
+          basePrice: 950,
+          minPrice: 950,
           popular: true,
         },
         {
-          id: 102,
-          name: "Chicken Wings",
-          description: "Crispy fried chicken wings",
-          basePrice: 1800,
-          minPrice: 1800,
-        },
-        {
-          id: 103,
-          name: "Grilled Fish",
-          description: "Fresh tilapia with spices",
-          basePrice: 3500,
-          minPrice: 3500,
+          id: 13,
+          name: "Fried Chicken",
+          description: "Well fried chicken",
+          basePrice: 2200,
+          minPrice: 2200,
+          popular: true,
         },
       ],
     },
-    // Add more sample restaurants as needed
+    {
+      id: 2,
+      name: "Ifeco's Kitchen",
+      category: "local",
+      image:
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      rating: 4.9,
+      deliveryTime: "30-45 min",
+      closingTime: "03:00",
+      status: "open",
+      featured: true,
+      description: "Authentic Calabar cuisine with variety of local dishes",
+      menu: [
+        {
+          id: 36,
+          name: "Noodles & Egg",
+          description: "One Indomie & One egg, (mini pack)",
+          basePrice: 950,
+          minPrice: 950,
+          popular: true,
+        },
+        {
+          id: 45,
+          name: "Fried Chicken",
+          description: "Well fried chicken wing",
+          basePrice: 3200,
+          minPrice: 3200,
+          popular: true,
+        },
+      ],
+    },
   ];
 }
 
-// Featured items from random restaurants
-const featuredItems = [
-  {
-    id: 101,
-    restaurantId: 1,
-    name: "Spicy Suya Platter",
-    description: "Signature beef suya with spices",
-    price: 2500,
-    image:
-      "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 201,
-    restaurantId: 2,
-    name: "Edikaikong Soup",
-    description: "Traditional vegetable soup",
-    price: 3000,
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 301,
-    restaurantId: 3,
-    name: "Pepperoni Pizza",
-    description: "Large 14-inch pizza",
-    price: 4500,
-    image:
-      "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w-400&q=80",
-  },
-  {
-    id: 403,
-    restaurantId: 4,
-    name: "Grilled Chicken Salad",
-    description: "Healthy fresh salad",
-    price: 3200,
-    image:
-      "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  },
-];
+// Make variables globally accessible
+window.restaurantsData = restaurants;
+window.featuredItemsData = featuredItems;
