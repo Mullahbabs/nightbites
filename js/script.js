@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function initApp() {
   try {
+    // Initialize EmailJS first
+    initEmailJS();
+
     // Load restaurant data
     await loadRestaurants();
 
@@ -36,6 +39,355 @@ async function initApp() {
       "Error loading application. Please refresh the page.",
       "error",
     );
+  }
+}
+
+//==================== EMAILJS CONFIGURATION ====================
+
+const EMAILJS_CONFIG = {
+  PUBLIC_KEY: "_PEwD_ZbRO1EoYbHU",
+  SERVICE_ID: "service_2lly29s",
+  TEMPLATE_ID: "template_5nro6ss",
+};
+
+// Helper function to escape HTML special characters
+function escapeHtml(text) {
+  if (!text) return "";
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Build order items HTML for email template
+function buildOrderItemsHTML(items) {
+  if (!items || items.length === 0)
+    return '<tr><td colspan="3">No items</td></tr>';
+
+  let html = "";
+  items.forEach((item) => {
+    const itemTotal = (item.price * item.quantity).toLocaleString();
+    html += `
+            <tr>
+                <td style="padding: 10px 0;">
+                    <div class="item-name">${escapeHtml(item.name)}</div>
+                    <div class="item-restaurant">${escapeHtml(item.restaurantName)}</div>
+                </td>
+                <td style="text-align: center; padding: 10px 0;">${item.quantity}</td>
+                <td style="text-align: right; padding: 10px 0;">NGN ${itemTotal}</td>
+            </tr>
+        `;
+  });
+  return html;
+}
+
+// Initialize EmailJS
+function initEmailJS() {
+  try {
+    // Check if EmailJS is loaded
+    if (typeof emailjs === "undefined") {
+      console.error("EmailJS library not loaded. Check your script tag.");
+      showNotification(
+        "Email service not available. Please contact support.",
+        "error",
+      );
+      return false;
+    }
+
+    // Initialize with public key
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    console.log("EmailJS initialized successfully");
+    return true;
+  } catch (error) {
+    console.error("Failed to initialize EmailJS:", error);
+    return false;
+  }
+}
+
+// Send order confirmation email via EmailJS
+async function sendOrderConfirmation(orderData) {
+  try {
+    // Validate EmailJS configuration
+    if (
+      !EMAILJS_CONFIG.PUBLIC_KEY ||
+      EMAILJS_CONFIG.PUBLIC_KEY === "YOUR_EMAILJS_PUBLIC_KEY"
+    ) {
+      console.warn("EmailJS not configured. Please add your credentials.");
+      return { success: false, error: "Email service not configured" };
+    }
+
+    // Build order items HTML
+    const orderItemsHTML = buildOrderItemsHTML(orderData.items);
+
+    // Format delivery time based on location
+    const deliveryTime =
+      orderData.delivery_area === "Urban Area"
+        ? "30-45 minutes"
+        : "45-60 minutes";
+
+    // Prepare email template parameters - using order_items_html instead of items array
+    const templateParams = {
+      // Order Details
+      order_id: orderData.order_id,
+      customer_name: escapeHtml(orderData.customer_name),
+      customer_phone: orderData.customer_phone,
+
+      // Delivery Details
+      delivery_address: escapeHtml(orderData.customer_address),
+      delivery_area: orderData.delivery_area,
+      delivery_time: deliveryTime,
+      special_instructions: escapeHtml(
+        orderData.special_instructions || "None",
+      ),
+
+      // Order Items HTML (built in JavaScript)
+      order_items_html: orderItemsHTML,
+
+      // Financial Details
+      subtotal: orderData.subtotal.toLocaleString(),
+      delivery_fee: orderData.delivery_fee.toLocaleString(),
+      total: orderData.total.toLocaleString(),
+
+      // Additional Info
+      order_date: new Date().toLocaleString(),
+    };
+
+    console.log("Sending email with params:", templateParams);
+
+    // Send the email using EmailJS
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID,
+      templateParams,
+    );
+
+    console.log("Email sent successfully:", response);
+    return { success: true, response };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return {
+      success: false,
+      error: error.text || error.message || "Failed to send email",
+    };
+  }
+}
+
+// Send admin notification email (optional)
+async function sendAdminNotification(orderData) {
+  try {
+    // Build items list for admin notification
+    const itemsList = orderData.items
+      .map(
+        (item) =>
+          `${item.quantity}x ${item.name} (${item.restaurantName}) - NGN ${(item.price * item.quantity).toLocaleString()}`,
+      )
+      .join("\n");
+
+    const adminTemplateParams = {
+      order_id: orderData.order_id,
+      customer_name: orderData.customer_name,
+      customer_phone: orderData.customer_phone,
+      customer_address: orderData.customer_address,
+      delivery_area: orderData.delivery_area,
+      total: orderData.total.toLocaleString(),
+      items_list: itemsList,
+      special_instructions: orderData.special_instructions || "None",
+      order_time: new Date().toLocaleString(),
+    };
+
+    // Uncomment and configure when you have an admin template
+    /*
+        await emailjs.send(
+            EMAILJS_CONFIG.SERVICE_ID,
+            'ADMIN_TEMPLATE_ID', // Create a separate admin template
+            adminTemplateParams
+        );
+        console.log('Admin notification sent');
+        */
+
+    return { success: true };
+  } catch (error) {
+    console.log("Admin notification not sent:", error);
+    return { success: false };
+  }
+}
+
+// Save order to localStorage for order history
+function saveOrderToHistory(orderData) {
+  try {
+    const orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    orders.unshift({
+      order_id: orderData.order_id,
+      customer_name: orderData.customer_name,
+      customer_phone: orderData.customer_phone,
+      customer_address: orderData.customer_address,
+      delivery_area: orderData.delivery_area,
+      total: orderData.total,
+      items_count: orderData.items.length,
+      timestamp: new Date().toISOString(),
+      status: "pending",
+    });
+    // Keep last 50 orders
+    localStorage.setItem("orderHistory", JSON.stringify(orders.slice(0, 50)));
+    console.log("Order saved to history");
+  } catch (error) {
+    console.error("Error saving order to history:", error);
+  }
+}
+
+// Enhanced submitOrder with EmailJS integration
+async function submitOrder() {
+  const name = document.getElementById("customerName").value;
+  const phone = document.getElementById("customerPhone").value;
+  const address = document.getElementById("deliveryAddress").value;
+  const instructions = document.getElementById("specialInstructions").value;
+
+  // Validation
+  if (!name.trim()) {
+    showNotification("Please enter your name", "error");
+    return;
+  }
+
+  if (!phone.trim()) {
+    showNotification("Please enter your phone number", "error");
+    return;
+  }
+
+  if (!address.trim()) {
+    showNotification("Please enter your delivery address", "error");
+    return;
+  }
+
+  if (!selectedLocation) {
+    showNotification("Please select a delivery area", "error");
+    return;
+  }
+
+  if (cart.length === 0) {
+    showNotification("Your cart is empty. Please add items to order.", "error");
+    return;
+  }
+
+  // Get submit button and show loading state
+  const submitBtn = document.querySelector("#cartModal .menu-btn:last-child");
+  const originalBtnText = submitBtn.innerHTML;
+  submitBtn.innerHTML =
+    '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
+  submitBtn.disabled = true;
+
+  try {
+    // Calculate totals
+    const subtotal = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
+    const deliveryFee = selectedLocation === "urban" ? 2500 : 3500;
+    const serviceFee = 500;
+    const total = subtotal + deliveryFee + serviceFee;
+
+    // Generate order ID
+    const orderId = "NB" + Date.now().toString().slice(-6);
+    document.getElementById("orderId").textContent = orderId;
+
+    // Prepare order data for EmailJS
+    const orderData = {
+      order_id: orderId,
+      customer_name: name,
+      customer_phone: phone,
+      customer_address: address,
+      special_instructions: instructions || "None",
+      delivery_area:
+        selectedLocation === "urban" ? "Urban Area" : "Sub-Urban Area",
+      delivery_fee: deliveryFee,
+      service_fee: serviceFee,
+      subtotal: subtotal,
+      total: total,
+      items: cart.map((item) => ({
+        name: item.name,
+        restaurantName: item.restaurantName,
+        quantity: item.quantity,
+        price: item.price,
+        total: item.price * item.quantity,
+      })),
+    };
+
+    console.log("Submitting order:", orderData);
+
+    // Send email via EmailJS
+    const emailResult = await sendOrderConfirmation(orderData);
+
+    if (emailResult.success) {
+      // Save order to history
+      saveOrderToHistory(orderData);
+
+      // Send admin notification (optional, uncomment if you have admin template)
+      // await sendAdminNotification(orderData);
+
+      // Clear cart
+      cart = [];
+      updateCart();
+      closeModal("cartModal");
+
+      // Reset form
+      document.getElementById("customerName").value = "";
+      document.getElementById("customerPhone").value = "";
+      document.getElementById("deliveryAddress").value = "";
+      document.getElementById("specialInstructions").value = "";
+      selectedLocation = null;
+      document.querySelectorAll(".location-option").forEach((option) => {
+        option.classList.remove("selected");
+      });
+
+      // Show success modal
+      setTimeout(() => {
+        openModal("successModal");
+      }, 500);
+
+      showNotification(
+        "Order submitted! Check your email for confirmation.",
+        "success",
+      );
+    } else {
+      // If email fails, still complete the order but show warning
+      console.error("Email failed:", emailResult.error);
+
+      // Save order to history anyway
+      saveOrderToHistory(orderData);
+
+      // Clear cart
+      cart = [];
+      updateCart();
+      closeModal("cartModal");
+
+      // Reset form
+      document.getElementById("customerName").value = "";
+      document.getElementById("customerPhone").value = "";
+      document.getElementById("deliveryAddress").value = "";
+      document.getElementById("specialInstructions").value = "";
+      selectedLocation = null;
+      document.querySelectorAll(".location-option").forEach((option) => {
+        option.classList.remove("selected");
+      });
+
+      // Show success modal but with warning
+      setTimeout(() => {
+        openModal("successModal");
+      }, 500);
+
+      showNotification(
+        "Order placed! However, confirmation email could not be sent. Please save your Order ID: " +
+          orderId,
+        "warning",
+      );
+    }
+  } catch (error) {
+    console.error("Order submission error:", error);
+    showNotification("Error submitting order. Please try again.", "error");
+  } finally {
+    // Reset button state
+    if (submitBtn) {
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    }
   }
 }
 
@@ -515,11 +867,12 @@ function updateTotal() {
   );
   const deliveryFee =
     selectedLocation === "urban"
-      ? 500
+      ? 2500
       : selectedLocation === "suburban"
-        ? 800
+        ? 3500
         : 0;
-  const total = subtotal + deliveryFee;
+  const serviceFee = 500;
+  const total = subtotal + deliveryFee + serviceFee;
 
   document.getElementById("totalAmount").textContent =
     `₦${total.toLocaleString()}`;
@@ -552,17 +905,19 @@ function closeModal(modalId) {
 
 // Payment & Order Submission
 function copyAccount() {
-  const account = "0123456789";
+  const account = "6607279314";
   navigator.clipboard.writeText(account).then(() => {
     showNotification("Account number copied to clipboard!");
   });
 }
 
-function submitOrder() {
+// Enhanced submitOrder with EmailJS integration
+async function submitOrder() {
   const name = document.getElementById("customerName").value;
   const phone = document.getElementById("customerPhone").value;
   const address = document.getElementById("deliveryAddress").value;
   const instructions = document.getElementById("specialInstructions").value;
+  const email = document.getElementById("customerEmail")?.value || "";
 
   // Validation
   if (!name.trim()) {
@@ -585,61 +940,110 @@ function submitOrder() {
     return;
   }
 
-  // Calculate totals
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const deliveryFee = selectedLocation === "urban" ? 500 : 800;
-  const total = subtotal + deliveryFee;
+  // Get submit button and show loading state
+  const submitBtn = document.querySelector("#cartModal .menu-btn:last-child");
+  const originalBtnText = submitBtn.innerHTML;
+  submitBtn.innerHTML =
+    '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
+  submitBtn.disabled = true;
 
-  // Generate order ID
-  const orderId = "NB" + Date.now().toString().slice(-6);
-  document.getElementById("orderId").textContent = orderId;
+  try {
+    // Calculate totals
+    const subtotal = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
+    const deliveryFee = selectedLocation === "urban" ? 2500 : 3500;
+    const serviceFee = 500;
+    const total = subtotal + deliveryFee + serviceFee;
 
-  // Prepare order data
-  const orderData = {
-    order_id: orderId,
-    customer_name: name,
-    customer_phone: phone,
-    customer_address: address,
-    special_instructions: instructions,
-    delivery_area:
-      selectedLocation === "urban" ? "Urban Area" : "Sub-Urban Area",
-    delivery_fee: deliveryFee,
-    subtotal: subtotal,
-    total: total,
-    items: cart
-      .map(
-        (item) =>
-          `${item.quantity}x ${item.name} - ₦${item.price * item.quantity}`,
-      )
-      .join("\n"),
-    payment_account: "0123456789 • Calabar Night Bites Ltd.",
-    order_time: new Date().toLocaleString(),
-  };
+    // Generate order ID
+    const orderId = "NB" + Date.now().toString().slice(-6);
+    document.getElementById("orderId").textContent = orderId;
 
-  // In production, send via EmailJS
-  console.log("Order submitted:", orderData);
+    // Get unique restaurants
+    const uniqueRestaurants = [
+      ...new Set(cart.map((item) => item.restaurantName)),
+    ];
 
-  // Simulate successful order submission
-  cart = [];
-  updateCart();
-  closeModal("cartModal");
+    // Prepare order data for EmailJS
+    const orderData = {
+      order_id: orderId,
+      customer_name: name,
+      customer_phone: phone,
+      customer_email:
+        email || `${name.toLowerCase().replace(/\s/g, ".")}@customer.com`,
+      customer_address: address,
+      special_instructions: instructions || "None",
+      delivery_area:
+        selectedLocation === "urban" ? "Urban Area" : "Sub-Urban Area",
+      delivery_fee: deliveryFee,
+      service_fee: serviceFee,
+      subtotal: subtotal,
+      total: total,
+      items: cart.map((item) => ({
+        name: item.name,
+        restaurantName: item.restaurantName,
+        quantity: item.quantity,
+        price: item.price,
+        total: item.price * item.quantity,
+      })),
+      restaurants: uniqueRestaurants.join(", "),
+    };
 
-  // Reset form
-  document.getElementById("customerName").value = "";
-  document.getElementById("customerPhone").value = "";
-  document.getElementById("deliveryAddress").value = "";
-  document.getElementById("specialInstructions").value = "";
-  selectedLocation = null;
-  document.querySelectorAll(".location-option").forEach((option) => {
-    option.classList.remove("selected");
-  });
+    console.log("Submitting order:", orderData);
 
-  setTimeout(() => {
-    openModal("successModal");
-  }, 500);
+    // Send email via EmailJS
+    const emailResult = await sendOrderConfirmation(orderData);
+
+    if (emailResult.success) {
+      // Save order to history
+      saveOrderToHistory(orderData);
+
+      // Send admin notification (optional)
+      await sendAdminNotification(orderData);
+
+      // Clear cart
+      cart = [];
+      updateCart();
+      closeModal("cartModal");
+
+      // Reset form
+      document.getElementById("customerName").value = "";
+      document.getElementById("customerPhone").value = "";
+      document.getElementById("deliveryAddress").value = "";
+      document.getElementById("specialInstructions").value = "";
+      if (document.getElementById("customerEmail")) {
+        document.getElementById("customerEmail").value = "";
+      }
+      selectedLocation = null;
+      document.querySelectorAll(".location-option").forEach((option) => {
+        option.classList.remove("selected");
+      });
+
+      // Show success modal
+      setTimeout(() => {
+        openModal("successModal");
+      }, 500);
+
+      showNotification(
+        "Order submitted! Check your email for confirmation.",
+        "success",
+      );
+    } else {
+      throw new Error(emailResult.error || "Failed to send confirmation email");
+    }
+  } catch (error) {
+    console.error("Order submission error:", error);
+    showNotification(
+      error.message || "Error submitting order. Please try again.",
+      "error",
+    );
+  } finally {
+    // Reset button state
+    submitBtn.innerHTML = originalBtnText;
+    submitBtn.disabled = false;
+  }
 }
 
 // UI Effects

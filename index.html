@@ -288,6 +288,77 @@
       </div>
     </div>
 
+    <div
+      class="calabarnightbites-modal-overlay"
+      id="calabarnightbitesDeliveryModal"
+    >
+      <div class="calabarnightbites-modal-content">
+        <div class="calabarnightbites-modal-header">
+          <h2 class="calabarnightbites-modal-title">
+            <i class="fas fa-map-marker-alt"></i>Delivery Area Notice
+          </h2>
+          <button
+            class="calabarnightbites-close-button"
+            id="calabarnightbitesCloseModal"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="calabarnightbites-modal-body">
+          <p class="calabarnightbites-modal-message">
+            <i class="fas fa-info-circle calabarnightbites-delivery-icon"></i>
+            CalabarNightBites only delivers to certain areas after (12:00 AM).
+            Please check if your area is listed below after said hour before
+            placing your order.
+          </p>
+
+          <div class="calabarnightbites-delivery-areas">
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Marian Road</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">State Housing</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Etta Agbor</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Parliamentary</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Satellite Town</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Ekorinim</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Diamond Hill</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Aka-Efa</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Ikot Ansa</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name"
+                >All Areas within this circumference</span
+              >
+            </div>
+          </div>
+
+          <div class="calabarnightbites-modal-note">
+            <strong>Important:</strong> Delivery is only available to these 10
+            areas during night hours. If your area is not listed, please call
+            <strong>08160549506</strong> for delivery clarification before
+            proceeding to place your order. <br />Thank you for choosing Calabar
+            Night Bites!
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Cart Modal -->
     <div class="modal" id="cartModal">
       <div class="modal-content">
@@ -364,7 +435,7 @@
                     onclick="selectLocation('urban')"
                   >
                     <h4>Urban Area</h4>
-                    <p>₦500 delivery fee</p>
+                    <p>₦2500 delivery fee</p>
                     <p>Delivery time: 30-45 mins</p>
                   </div>
                   <div
@@ -373,8 +444,12 @@
                     onclick="selectLocation('suburban')"
                   >
                     <h4>Sub-Urban Area</h4>
-                    <p>₦800 delivery fee</p>
+                    <p>₦3500 delivery fee</p>
                     <p>Delivery time: 45-60 mins</p>
+                  </div>
+                  <div class="location-option">
+                    <h4>Service Fee</h4>
+                    <p>₦500 service fee</p>
                   </div>
                 </div>
               </div>
@@ -407,7 +482,7 @@
                       word-break: break-all;
                     "
                   >
-                    0123456789
+                    6607279314
                   </p>
                   <p style="font-size: 0.9rem; margin: 0.5rem 0">
                     Calabar Night Bites Ltd.
@@ -484,14 +559,14 @@
           </p>
           <p>© 2025 Calabar Night Bites. All rights reserved.</p>
           <div class="footer-links">
-            <a href="#"><i class="fas fa-phone"></i> 0800-CALABAR</a>
+            <a href="#"><i class="fas fa-phone"></i> 08160549506-CALABAR</a>
             <a href="#"
-              ><i class="fas fa-envelope"></i> support@calabarnightbites.com</a
+              ><i class="fas fa-envelope"></i>calabarnightbites@gmail.com</a
             >
             <a href="#"
               ><i class="fas fa-map-marker-alt"></i> Calabar, Nigeria</a
             >
-            <a href="#"><i class="fas fa-clock"></i> 6:00 PM - 4:30 AM Daily</a>
+            <a href="#"><i class="fas fa-clock"></i> 7:00 PM - 4:30 AM Daily</a>
           </div>
           <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9rem">
             Satisfying your late-night cravings since 2024
@@ -505,5 +580,74 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="js/restaurants.js"></script>
     <script src="js/script.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6833c4168c4ed918fea4697d/1is53buvv";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <script>
+      // JavaScript to handle the pop-up - ADD THIS TO YOUR EXISTING JS FILE
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get modal and close button elements
+        const deliveryModal = document.getElementById(
+          "calabarnightbitesDeliveryModal",
+        );
+        const closeButton = document.getElementById(
+          "calabarnightbitesCloseModal",
+        );
+
+        // Show the modal after a short delay (when page loads)
+        setTimeout(() => {
+          if (deliveryModal) {
+            deliveryModal.style.display = "flex";
+          }
+        }, 1000); // 1 second delay
+
+        // Close modal when close button is clicked
+        if (closeButton) {
+          closeButton.addEventListener("click", function () {
+            if (deliveryModal) {
+              deliveryModal.style.opacity = "0";
+              setTimeout(() => {
+                deliveryModal.style.display = "none";
+              }, 400);
+            }
+          });
+        }
+
+        // Close modal when clicking outside the content
+        if (deliveryModal) {
+          deliveryModal.addEventListener("click", function (event) {
+            if (event.target === deliveryModal) {
+              deliveryModal.style.opacity = "0";
+              setTimeout(() => {
+                deliveryModal.style.display = "none";
+              }, 400);
+            }
+          });
+        }
+
+        const hasSeenModal = localStorage.getItem("calabarnightbitesModalSeen");
+        if (!hasSeenModal) {
+          setTimeout(() => {
+            if (deliveryModal) {
+              deliveryModal.style.display = "flex";
+            }
+          }, 1000);
+          localStorage.setItem("calabarnightbitesModalSeen", "false");
+        }
+      });
+    </script>
   </body>
 </html>
